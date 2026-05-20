@@ -83,6 +83,7 @@
 
         .resource-card { background: #fcfcfc; border-left: 6px solid var(--y-yellow); padding: 20px; margin-bottom: 20px; border: 1px solid #eee; }
         h2 { color: var(--y-blue); text-transform: uppercase; border-bottom: 2px solid #EEE; padding-bottom: 15px; margin-top: 0; font-size: 22px; }
+        h3 { color: var(--y-black); margin-top: 0; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { text-align: left; padding: 15px; border-bottom: 1px solid #eee; }
@@ -119,6 +120,14 @@
             background: var(--y-yellow); 
             color: var(--y-black); 
         }
+
+        /* Drills List Styling */
+        .drill-list { list-style: none; padding: 0; margin: 0; }
+        .drill-list li { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
+        .drill-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .drill-list a { color: var(--y-blue); font-weight: bold; text-decoration: none; }
+        .drill-list a:hover { text-decoration: underline; }
+        .drill-list p { margin: 5px 0 0 0; font-size: 14px; color: #555; }
     </style>
 </head>
 <body>
@@ -202,9 +211,28 @@
         </div>
 
         <div class="resource-card" id="drill-section">
-            <h3>Drills & Resources</h3>
-            <ul id="drill-list"><li>https://soccerxpert.com/</li><li>https://www.soccerdrive.com/soccer-drills</li>
-                                <li><h ref>https://mojo.sport/coachs-corner/how-to-coach-soccer/</h></li>
+            <h3>Youth Soccer Coaching Resources</h3>
+            <ul class="drill-list" id="drill-list">
+                <li>
+                    <a href="https://www.soccerxpert.com/" target="_blank">SoccerXpert</a>
+                    <p>Free, easily printable beginner drills and full session plans organized strictly by age brackets (U6, U8, U10, U12).</p>
+                </li>
+                <li>
+                    <a href="https://www.soccerdrive.com/soccer-drills" target="_blank">SoccerDrive</a>
+                    <p>Excellent resource featuring 3D animated diagrams and short video clips to help visualize spacing and drill structures.</p>
+                </li>
+                <li>
+                    <a href="https://www.mojo.sport/coachs-corner/how-to-coach-soccer/" target="_blank">MOJO Sports</a>
+                    <p>High-quality, bite-sized instructional videos that turn fundamental development into engaging games for younger skill groups.</p>
+                </li>
+                <li>
+                    <a href="https://www.coervercoaching.com/" target="_blank">Coerver Coaching (PlayGreatSoccer)</a>
+                    <p>The global gold standard for technical foundation work, emphasizing touch, foot mastery, and 1v1 skill development.</p>
+                </li>
+                <li>
+                    <a href="https://www.usyouthsoccer.org/resources/coach/" target="_blank">US Youth Soccer Resources</a>
+                    <p>Official player development curriculums and structural guidelines vetted directly by the sport's national governing body.</p>
+                </li>
             </ul>
         </div>
     </div>
