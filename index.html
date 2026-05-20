@@ -211,20 +211,9 @@
         </div>
 
         <div class="resource-card" id="drill-section">
-            <h3>Youth Soccer Coaching Resources</h3>
+            <h3 id="drill-section-title">Youth Soccer Coaching Resources</h3>
             <ul class="drill-list" id="drill-list">
-                <li>
-                    <a href="https://www.soccerxpert.com/" target="_blank">SoccerXpert</a>
-                    <p>Free, easily printable beginner drills and full session plans organized strictly by age brackets (U6, U8, U10, U12).</p>
-                </li>
-                <li>
-                    <a href="https://www.soccerdrive.com/soccer-drills" target="_blank">SoccerDrive</a>
-                    <p>Excellent resource featuring 3D animated diagrams and short video clips to help visualize spacing and drill structures.</p>
-                </li>
-                <li>
-                    <a href="https://www.mojo.sport/coachs-corner/how-to-coach-soccer/" target="_blank">MOJO Sports</a>
-                    <p>High-quality, bite-sized instructional videos that turn fundamental development into engaging games for younger skill groups.</p>
-                </li>
+                <!-- Injected dynamically via JavaScript -->
             </ul>
         </div>
     </div>
@@ -244,8 +233,8 @@
             senior: [
                 { name: "Sr Yellow", coach: "Beth Carnes", players: "12 Players", url: "Sr Yellow.pdf", pass: "SrYellow26" },
                 { name: "Sr Red", coach: "Dale Schmidt and Gina Green", players: "11 Players", url: "Sr Red.pdf", pass: "SrRed26" },
-               /* Did not have a Sr Blue team this season, in here as a placeholder if ever needed
-               { name: "Sr Blue", coach: "Jones", players: "11 Players", url: "Sr Blue.pdf", pass: "SrBlue26" }, */
+                /* Did not have a Sr Blue team this season, in here as a placeholder if ever needed
+                { name: "Sr Blue", coach: "Jones", players: "11 Players", url: "Sr Blue.pdf", pass: "SrBlue26" }, */
                 { name: "Sr Green", coach: "Martin Hernandez and Khalil Fields", players: "11 Players", url: "Sr Green.pdf", pass: "SrGreen26" }
             ],
             junior: [
@@ -293,6 +282,29 @@
         }
     };
 
+    // Sport-Specific Coaching Resources Data
+    const coachResources = {
+        soccer: {
+            title: "Youth Soccer Coaching Resources",
+            links: [
+                { name: "SoccerXpert", url: "https://www.soccerxpert.com/", desc: "Free, easily printable beginner drills and full session plans organized strictly by age brackets (U6, U8, U10, U12)." },
+                { name: "SoccerDrive", url: "https://www.soccerdrive.com/soccer-drills", desc: "Excellent resource featuring 3D animated diagrams and short video clips to help visualize spacing and drill structures." },
+                { name: "MOJO Sports", url: "https://www.mojo.sport/coachs-corner/how-to-coach-soccer/", desc: "High-quality, bite-sized instructional videos that turn fundamental development into engaging games for younger skill groups." },
+                { name: "Coerver Coaching", url: "https://www.coervercoaching.com/", desc: "The global gold standard for youth technical foundation work, focusing closely on individual footwork and ball mastery." },
+                { name: "US Youth Soccer Resources", url: "https://www.usyouthsoccer.org/resources/coach/", desc: "Official player development frameworks and structural guidelines vetted directly by the sport's national governing body." }
+            ]
+        },
+        hoops: {
+            title: "Youth Basketball Coaching Resources",
+            links: [
+                { name: "Breakthrough Basketball", url: "https://www.breakthroughbasketball.com/drills/basketballdrills.html", desc: "Hundreds of free youth drills broken down by fundamental skills (footwork, ball-handling, passing) with step-by-step diagrams." },
+                { name: "Coaches Clipboard", url: "https://www.coachesclipboard.net/YouthBasketballDrills.html", desc: "An incredible foundational directory explicitly tailoring instructional concepts, plays, and simple skills to coaches of absolute beginners." },
+                { name: "USA Basketball Youth Development", url: "https://www.usab.com/youth/development/", desc: "Official structural curriculum, basic defensive rules, and player development playbooks created by the national governing framework." },
+                { name: "Jr. NBA Coach Development", url: "https://jr.nba.com/coach/", desc: "Comprehensive instructional toolsets complete with complete, practice-ready layout guides built to keep young kids active and engaged." }
+            ]
+        }
+    };
+
     let currentSport = 'soccer';
     let currentCategory = 'in-town';
 
@@ -305,6 +317,22 @@
             <td>${item.coach}</td>
             <td>${item.players}</td>
         </tr>`;
+    }
+
+    // New Function to dynamically update the drill resources card
+    function updateDrillSection(sport) {
+        const titleElement = document.getElementById('drill-section-title');
+        const listElement = document.getElementById('drill-list');
+        
+        if (coachResources[sport]) {
+            titleElement.innerText = coachResources[sport].title;
+            listElement.innerHTML = coachResources[sport].links.map(link => `
+                <li>
+                    <a href="${link.url}" target="_blank">${link.name}</a>
+                    <p>${link.desc}</p>
+                </li>
+            `).join('');
+        }
     }
 
     function showCategory(category) {
@@ -378,7 +406,10 @@
             title.innerText = "Basketball Game Schedule";
             dlLink.setAttribute('href', 'Basketball-Schedule.pdf');
         }
+        
+        // Update both the roster table AND the contextual coaching resources
         showRoster('senior', document.getElementById('btn-senior')); 
+        updateDrillSection(sport);
     }
 
     function showRoster(level, btnElement) {
