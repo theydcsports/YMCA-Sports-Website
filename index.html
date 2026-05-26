@@ -198,13 +198,13 @@
         <div class="resource-card" id="roster-section">
             <h3 id="roster-header-text">Team Rosters</h3>
             <div class="roster-tabs">
-                <button id="btn-senior" class="roster-btn active" onclick="showRoster('senior', this)">Senior Teams</button>
-                <button id="btn-junior" class="roster-btn" onclick="showRoster('junior', this)">Junior Teams</button>
-                <button id="btn-mini" class="roster-btn" onclick="showRoster('mini', this)">Mini Teams</button>
+                <button id="btn-level-1" class="roster-btn active" onclick="showRoster('level1', this)">Senior Teams</button>
+                <button id="btn-level-2" class="roster-btn" onclick="showRoster('level2', this)">Junior Teams</button>
+                <button id="btn-level-3" class="roster-btn" onclick="showRoster('level3', this)">Mini Teams</button>
             </div>
             <div id="roster-display">
                 <table>
-                    <thead><tr><th>Team/Roster</th><th>Coaches</th><th>Number of Players</th></tr></thead>
+                    <thead><tr id="roster-th-row"><th>Team/Roster</th><th>Coaches</th><th>Number of Players</th></tr></thead>
                     <tbody id="roster-body"></tbody>
                 </table>
             </div>
@@ -218,6 +218,7 @@
         </div>
     </div>
 </div>
+
 <script>
     function verifyAccess(pdfUrl, correctPassword) {
         let userInput = prompt("Please enter the unique password for this team roster:");
@@ -230,14 +231,12 @@
 
     const rosterData = {
         soccer: {
-            senior: [
+            level1: [
                 { name: "Sr Yellow", coach: "Beth Carnes", players: "12 Players", url: "Sr Yellow.pdf", pass: "SrYellow26" },
                 { name: "Sr Red", coach: "Dale Schmidt and Gina Green", players: "11 Players", url: "Sr Red.pdf", pass: "SrRed26" },
-                /* Did not have a Sr Blue team this season, in here as a placeholder if ever needed 
-                { name: "Sr Blue", coach: "Jones", players: "11 Players", url: "Sr Blue.pdf", pass: "SrBlue26" }, */ 
                 { name: "Sr Green", coach: "Martin Hernandez and Khalil Fields", players: "11 Players", url: "Sr Green.pdf", pass: "SrGreen26" }
             ],
-            junior: [
+            level2: [
                 { name: "Jr Green", coach: "Khalil Fields", players: "10 Players", url: "Jr Green.pdf", pass: "JrGreen26" },
                 { name: "Jr White", coach: "Adam Kidd, Matt Ispen, and Travis Rayala", players: "10 Players", url: "Jr White.pdf", pass: "JrWhite26" },
                 { name: "Jr Yellow", coach: "Shanna Katze", players: "10 Players", url: "Jr Yellow.pdf", pass: "JrYellow26" },
@@ -247,7 +246,7 @@
                 { name: "Jr Purple", coach: "Cris Olson and Dave Walter", players: "10 Players", url: "Jr Purple.pdf", pass: "JrPurple26" },
                 { name: "Jr Orange", coach: "Alyssa Lentscher", players: "10 Players", url: "Jr Orange.pdf", pass: "JrOrange26" }
             ],
-            mini: [
+            level3: [
                 { name: "Mini Red", coach: "Chandler Feeler and Byron Davis", players: "8 Players", url: "Mini Red.pdf", pass: "MiniRed26" },
                 { name: "Mini Yellow", coach: "Clinton Geier, Travis Rayala, and Adam Kidd", players: "8 Players", url: "Mini Yellow.pdf", pass: "MiniYellow26" },
                 { name: "Mini Green", coach: "Alyssa Martin", players: "8 Players", url: "Mini Green.pdf", pass: "MiniGreen26" },
@@ -257,13 +256,13 @@
             ]
         },
         hoops: {
-            intermediate: [
+            level1: [
                 { name: "Int Yellow", coach: "", players: "12 Players", url: "Int Yellow.pdf", pass: "IntYellow26" },
                 { name: "Int Red", coach: "", players: "11 Players", url: "Int Red.pdf", pass: "IntRed26" },
                 { name: "Int Blue", coach: "Jones", players: "11 Players", url: "Int Blue.pdf", pass: "IntBlue26" }, 
-                { name: "Int Green", coach: "", players: "11 Players", url: "Int Green.pdf", pass: "IntGreen26" },
+                { name: "Int Green", coach: "", players: "11 Players", url: "Int Green.pdf", pass: "IntGreen26" }
             ],
-            rookie: [
+            level2: [
                 { name: "Rookie Green", coach: "", players: "10 Players", url: "Rookie Green.pdf", pass: "RookieGreen26" },
                 { name: "Rookie White", coach: "", players: "10 Players", url: "Rookie White.pdf", pass: "RookieWhite26" },
                 { name: "Rookie Yellow", coach: "", players: "10 Players", url: "Rookie Yellow.pdf", pass: "RookieYellow26" },
@@ -273,7 +272,7 @@
                 { name: "Rookie Purple", coach: "", players: "10 Players", url: "Rookie Purple.pdf", pass: "RookiePurple26" },
                 { name: "Rookie Orange", coach: "", players: "10 Players", url: "Rookie Orange.pdf", pass: "RookieOrange26" }
             ],
-            mini: [
+            level3: [
                 { name: "Mini Red", coach: "", players: "8 Players", url: "M Red.pdf", pass: "MRed26" },
                 { name: "Mini Yellow", coach: "", players: "8 Players", url: "M Yellow.pdf", pass: "MYellow26" },
                 { name: "Mini Green", coach: "", players: "8 Players", url: "M Green.pdf", pass: "MGreen26" },
@@ -304,7 +303,7 @@
             links: [
                 { name: "SoccerXpert", url: "https://www.soccerxpert.com/", desc: "Free, easily printable beginner drills and full session plans organized strictly by age brackets (U6, U8, U10, U12)." },
                 { name: "SoccerDrive", url: "https://www.soccerdrive.com/soccer-drills", desc: "Excellent resource featuring 3D animated diagrams and short video clips to help visualize spacing and drill structures." },
-                { name: "MOJO Sports", url: "https://www.mojo.sport/coachs-corner/how-to-coach-soccer/", desc: "High-quality, bite-sized instructional videos that turn fundamental development into engaging games for younger skill groups." },
+                { name: "MOJO Sports", url: "https://www.mojo.sport/coachs-corner/how-to-coach-soccer/", desc: "High-quality, bite-sized instructional videos that turn fundamental development into engaging games for younger skill groups." }
             ]
         },
         hoops: {
@@ -331,7 +330,6 @@
         </tr>`;
     }
 
-    // New Function to dynamically update the drill resources card
     function updateDrillSection(sport) {
         const titleElement = document.getElementById('drill-section-title');
         const listElement = document.getElementById('drill-list');
@@ -360,6 +358,7 @@
         const drillSection = document.getElementById('drill-section');
         const rosterHeader = document.getElementById('roster-header-text');
         const picBtn = document.getElementById('tab-picture-btn');
+        const thRow = document.getElementById('roster-th-row');
 
         if (category === 'in-town') {
             sportSelector.style.display = 'flex';
@@ -370,6 +369,7 @@
             picBtn.style.display = 'inline-block';
             document.getElementById('tab-roster-text').innerText = "Coaches Corner / Rosters";
             rosterHeader.innerText = "Team Rosters";
+            thRow.innerHTML = "<th>Team/Roster</th><th>Coaches</th><th>Number of Players</th>";
             showSport(currentSport);
         } else if (category === 'jayme') {
             sportSelector.style.display = 'none';
@@ -381,6 +381,7 @@
             document.getElementById('sport-title').innerText = "Jayme's Classes";
             document.getElementById('tab-roster-text').innerText = "Class Rosters";
             rosterHeader.innerText = "Classes and Rosters";
+            thRow.innerHTML = "<th>Class Name</th><th>Instructor</th><th>Location Detail</th>";
             const html = rosterData.jayme.classes.map(item => generateTableRow(item)).join('');
             document.getElementById('roster-body').innerHTML = html;
             document.querySelector('.roster-tabs').style.display = 'none';
@@ -395,6 +396,7 @@
             document.getElementById('sport-title').innerText = "Adult Sports Leagues";
             document.getElementById('tab-roster-text').innerText = "League Rosters";
             rosterHeader.innerText = "Divisions & Captains";
+            thRow.innerHTML = "<th>League/Roster</th><th>Management</th><th>Scale/Teams</th>";
             const html = rosterData.adultSports.leagues.map(item => generateTableRow(item)).join('');
             document.getElementById('roster-body').innerHTML = html;
             document.querySelector('.roster-tabs').style.display = 'none';
@@ -410,17 +412,25 @@
 
         const title = document.getElementById('sport-title');
         const dlLink = document.getElementById('download-link');
+        const btn1 = document.getElementById('btn-level-1');
+        const btn2 = document.getElementById('btn-level-2');
+        const btn3 = document.getElementById('btn-level-3');
         
         if(sport === 'soccer') {
             title.innerText = "Soccer Game Schedule";
             dlLink.setAttribute('href', 'Game%20Schedule%20-%20Spring%202026.pdf');
+            btn1.innerText = "Senior Teams";
+            btn2.innerText = "Junior Teams";
+            btn3.innerText = "Mini Teams";
         } else {
             title.innerText = "Basketball Game Schedule";
             dlLink.setAttribute('href', 'Basketball-Schedule.pdf');
+            btn1.innerText = "Intermediate";
+            btn2.innerText = "Rookie";
+            btn3.innerText = "Mini";
         }
         
-        // Update both the roster table AND the contextual coaching resources
-        showRoster('senior', document.getElementById('btn-senior')); 
+        showRoster('level1', btn1); 
         updateDrillSection(sport);
     }
 
