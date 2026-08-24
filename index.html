@@ -14,7 +14,7 @@
         }
 
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f4f4f4; color: var(--y-black); }
-        
+
         /* Centered Header Layout */
         header { 
             background-color: white; 
@@ -84,7 +84,7 @@
         .resource-card { background: #fcfcfc; border-left: 6px solid var(--y-yellow); padding: 20px; margin-bottom: 20px; border: 1px solid #eee; }
         h2 { color: var(--y-blue); text-transform: uppercase; border-bottom: 2px solid #EEE; padding-bottom: 15px; margin-top: 0; font-size: 22px; }
         h3 { color: var(--y-black); margin-top: 0; }
-        
+
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { text-align: left; padding: 15px; border-bottom: 1px solid #eee; }
         th { background: #f8f8f8; color: var(--y-blue); text-transform: uppercase; font-size: 13px; }
@@ -96,7 +96,7 @@
         /* Main Link Button */
         .btn-link { display: inline-block; padding: 14px 28px; background: var(--y-blue); color: white; text-decoration: none; border-radius: 2px; font-weight: bold; text-transform: uppercase; margin-top: 15px; font-size: 14px; }
         .btn-link:hover { background: #004d88; }
-        
+
         /* UNIFORM ROSTER BUTTONS */
         .team-link { 
             display: inline-block; 
@@ -115,7 +115,7 @@
             border: none;
             transition: background 0.3s, color 0.3s;
         }
-        
+
         .team-link:hover { 
             background: var(--y-yellow); 
             color: var(--y-black); 
@@ -155,34 +155,26 @@
 </div>
 
 <div class="container">
-    
-  <div id="schedules-container" class="tab-content active">
-    <!-- Section 1: Game Schedule -->
-    <div class="schedule-card">
-        <h2>Soccer Game Schedule</h2>
-        <div class="schedule-box">
+
+    <div id="schedule" class="tab-content active">
+        <h2 id="sport-title">Soccer Game Schedule</h2>
+        <div id="schedule-box">
             <p>Please use the link below to access the most recent schedules for the current season.</p>
-            <a href="Game%20Schedule%20-%20Fall%202026.pdf" class="btn-link" download>Download Game Schedule</a>
+            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download PDF Schedule</a>
+            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Game Schedule</a>
         </div>
-    </div>
-
-    <!-- Section 2: Practice Schedule -->
-    <div class="schedule-card">
-        <h2>Soccer Practice Schedule</h2>
-        <div class="schedule-box">
-            <p>Click the blue button to view this season's practice schedule.</p>
-            <a href="Practice%20Schedule%20-%20Fall%202026.pdf" class="btn-link" download>Download Practice Schedule</a>
+        <div id="schedule" class="tab-content active">
+        <h2 id="sport-title">Soccer Practice Schedule</h2>
+        <div id="schedule-box">
+            <p>Click the blue button to view this season's practice schedule</p>
+            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Practice Schedule</a>
         </div>
-    </div>
-
-    <!-- Section 3: Field Layout -->
-    <div class="schedule-card">
-        <h2>Field Layout</h2>
-        <div class="schedule-box">
-            <p>Click the blue button to view the field layout.</p>
-            <a href="Field%20Layout%20-%20Fall%202026.pdf" class="btn-link" download>Download Field Layout</a>
+        <div id="schedule" class="tab-content active">
+        <h2 id="sport-title">Field Layout</h2>
+        <div id="schedule-box">
+            <p>Click the blue button to view the field layout</p>
+            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Field Layout</a>
         </div>
-    </div>
         <div id="jayme-info" style="display:none;">
             <p>Welcome to classes led by Jayme Roll. Our youth programs focus on skill development and teamwork.</p>
             <div class="resource-card">
@@ -262,6 +254,7 @@
                 { name: "Jr Blue", coach: "Alyssa Lentscher, Travis Rayala, and Adam Kidd", players: "15 Players", url: "Jr Blue.pdf?v=2", pass: "JrBlue26" },
                /* { name: "Jr Yellow", coach: "", players: "10 Players", url: "Jr Yellow.pdf?v=2", pass: "JrYellow26" }, */
                 { name: "Jr Red", coach: "John Petrie, Candy Tuler, and Clinton Geier", players: "10 Players", url: "Jr Red.pdf?v=2", pass: "JrRed26" },
+                { name: "Jr White", coach: "Larry Lajewski", players: "11 Players", url: "Jr White.pdf?v=2", pass: "JrWhite26" },
                 { name: "Jr White", coach: "Larry Lajewski", players: "11 Players", url: "Jr White.pdf?v=3", pass: "JrWhite26" },
                 { name: "Jr Purple", coach: "Erika Vroom and James Haas", players: "12 Players", url: "Jr Purple.pdf?v=2", pass: "JrPurple26" },
                 { name: "Jr Black", coach: "David Walter Jr. and Cris Olson", players: "10 Players", url: "Jr Black.pdf?v=2", pass: "JrBlack26" },
@@ -354,7 +347,7 @@
     function updateDrillSection(sport) {
         const titleElement = document.getElementById('drill-section-title');
         const listElement = document.getElementById('drill-list');
-        
+
         if (coachResources[sport]) {
             titleElement.innerText = coachResources[sport].title;
             listElement.innerHTML = coachResources[sport].links.map(link => `
@@ -436,7 +429,7 @@
         const btn1 = document.getElementById('btn-level-1');
         const btn2 = document.getElementById('btn-level-2');
         const btn3 = document.getElementById('btn-level-3');
-        
+
         if(sport === 'soccer') {
             title.innerText = "Soccer Game Schedule";
             dlLink.setAttribute('href', 'Game%20Schedule%20-%20Fall%202026.pdf');
@@ -450,7 +443,7 @@
             btn2.innerText = "Rookie";
             btn3.innerText = "Mini";
         }
-        
+
         showRoster('level1', btn1); 
         updateDrillSection(sport);
     }
