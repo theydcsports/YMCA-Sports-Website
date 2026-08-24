@@ -14,7 +14,7 @@
         }
 
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f4f4f4; color: var(--y-black); }
-
+        
         /* Centered Header Layout */
         header { 
             background-color: white; 
@@ -81,10 +81,20 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        .resource-card { background: #fcfcfc; border-left: 6px solid var(--y-yellow); padding: 20px; margin-bottom: 20px; border: 1px solid #eee; }
+        .resource-card, .schedule-card { 
+            background: #fcfcfc; 
+            border-left: 6px solid var(--y-yellow); 
+            padding: 24px; 
+            margin-bottom: 20px; 
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            border-radius: 4px;
+        }
+        
         h2 { color: var(--y-blue); text-transform: uppercase; border-bottom: 2px solid #EEE; padding-bottom: 15px; margin-top: 0; font-size: 22px; }
         h3 { color: var(--y-black); margin-top: 0; }
-
+        
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { text-align: left; padding: 15px; border-bottom: 1px solid #eee; }
         th { background: #f8f8f8; color: var(--y-blue); text-transform: uppercase; font-size: 13px; }
@@ -96,7 +106,7 @@
         /* Main Link Button */
         .btn-link { display: inline-block; padding: 14px 28px; background: var(--y-blue); color: white; text-decoration: none; border-radius: 2px; font-weight: bold; text-transform: uppercase; margin-top: 15px; font-size: 14px; }
         .btn-link:hover { background: #004d88; }
-
+        
         /* UNIFORM ROSTER BUTTONS */
         .team-link { 
             display: inline-block; 
@@ -115,7 +125,7 @@
             border: none;
             transition: background 0.3s, color 0.3s;
         }
-
+        
         .team-link:hover { 
             background: var(--y-yellow); 
             color: var(--y-black); 
@@ -155,45 +165,63 @@
 </div>
 
 <div class="container">
-
+    
     <div id="schedule" class="tab-content active">
-        <h2 id="sport-title">Soccer Game Schedule</h2>
-        <div id="schedule-box">
-            <p>Please use the link below to access the most recent schedules for the current season.</p>
-            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download PDF Schedule</a>
-            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Game Schedule</a>
-        </div>
-        <div id="schedule" class="tab-content active">
-        <h2 id="sport-title">Soccer Practice Schedule</h2>
-        <div id="schedule-box">
-            <p>Click the blue button to view this season's practice schedule</p>
-            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Practice Schedule</a>
-        </div>
-        <div id="schedule" class="tab-content active">
-        <h2 id="sport-title">Field Layout</h2>
-        <div id="schedule-box">
-            <p>Click the blue button to view the field layout</p>
-            <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="download-link" class="btn-link" download>Download Field Layout</a>
-        </div>
-        <div id="jayme-info" style="display:none;">
-            <p>Welcome to classes led by Jayme Roll. Our youth programs focus on skill development and teamwork.</p>
-            <div class="resource-card">
-                <h3>Upcoming Program Offerings</h3>
-                <ul>
-                    <li><strong>Volleyball</strong></li>
-                    <li><strong>Teen Classes</strong></li>
-                    <li><strong>Balls of Fun</strong></li>
-                    <li><strong>Tee Ball</strong></li>
-                </ul>
+        <!-- Youth Sports Schedule Cards -->
+        <div id="youth-schedules">
+            <div class="schedule-card">
+                <h2 id="game-schedule-title">Soccer Game Schedule</h2>
+                <div class="schedule-box">
+                    <p>Please use the link below to access the most recent game schedules for the current season.</p>
+                    <a href="Game%20Schedule%20-%20Fall%202026.pdf" id="game-download-link" class="btn-link" download>Download Game Schedule</a>
+                </div>
+            </div>
+
+            <div class="schedule-card" id="practice-card">
+                <h2 id="practice-schedule-title">Soccer Practice Schedule</h2>
+                <div class="schedule-box">
+                    <p>Click the blue button below to view this season's practice schedule.</p>
+                    <a href="Practice%20Schedule%20-%20Fall%202026.pdf" id="practice-download-link" class="btn-link" download>Download Practice Schedule</a>
+                </div>
+            </div>
+
+            <div class="schedule-card" id="layout-card">
+                <h2 id="layout-schedule-title">Field Layout</h2>
+                <div class="schedule-box">
+                    <p>Click the blue button below to view the layout map.</p>
+                    <a href="Field%20Layout%20-%20Fall%202026.pdf" id="layout-download-link" class="btn-link" download>Download Layout</a>
+                </div>
             </div>
         </div>
+
+        <!-- Jayme's Classes Info Section -->
+        <div id="jayme-info" style="display:none;">
+            <div class="schedule-card">
+                <h2>Jayme's Youth Classes</h2>
+                <p>Welcome to classes led by Jayme Roll. Our youth programs focus on skill development and teamwork.</p>
+                <div class="resource-card" style="margin-bottom:0;">
+                    <h3>Upcoming Program Offerings</h3>
+                    <ul>
+                        <li><strong>Volleyball</strong></li>
+                        <li><strong>Teen Classes</strong></li>
+                        <li><strong>Balls of Fun</strong></li>
+                        <li><strong>Tee Ball</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adult Sports Info Section -->
         <div id="adult-info" style="display:none;">
-            <p>Welcome to the YMCA Adult Sports Leagues portal. Check schedules, rosters, standings, and team details.</p>
-            <div class="resource-card">
-                <h3>Current Active Leagues</h3>
-                <ul>
-                    <li><strong>Adult Basketball League</strong></li>
-                </ul>
+            <div class="schedule-card">
+                <h2>Adult Sports Leagues</h2>
+                <p>Welcome to the YMCA Adult Sports Leagues portal. Check schedules, rosters, standings, and team details.</p>
+                <div class="resource-card" style="margin-bottom:0;">
+                    <h3>Current Active Leagues</h3>
+                    <ul>
+                        <li><strong>Adult Basketball League</strong></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -252,13 +280,10 @@
             level2: [
                 { name: "Jr Green", coach: "Dan Raley and Royce Austin", players: "12 Players", url: "Jr Green.pdf?v=2", pass: "JrGreen26" },
                 { name: "Jr Blue", coach: "Alyssa Lentscher, Travis Rayala, and Adam Kidd", players: "15 Players", url: "Jr Blue.pdf?v=2", pass: "JrBlue26" },
-               /* { name: "Jr Yellow", coach: "", players: "10 Players", url: "Jr Yellow.pdf?v=2", pass: "JrYellow26" }, */
                 { name: "Jr Red", coach: "John Petrie, Candy Tuler, and Clinton Geier", players: "10 Players", url: "Jr Red.pdf?v=2", pass: "JrRed26" },
-                { name: "Jr White", coach: "Larry Lajewski", players: "11 Players", url: "Jr White.pdf?v=2", pass: "JrWhite26" },
                 { name: "Jr White", coach: "Larry Lajewski", players: "11 Players", url: "Jr White.pdf?v=3", pass: "JrWhite26" },
                 { name: "Jr Purple", coach: "Erika Vroom and James Haas", players: "12 Players", url: "Jr Purple.pdf?v=2", pass: "JrPurple26" },
-                { name: "Jr Black", coach: "David Walter Jr. and Cris Olson", players: "10 Players", url: "Jr Black.pdf?v=2", pass: "JrBlack26" },
-               /* { name: "Jr Orange", coach: "", players: "10 Players", url: "Jr Orange.pdf?v=2", pass: "JrOrange26" } */
+                { name: "Jr Black", coach: "David Walter Jr. and Cris Olson", players: "10 Players", url: "Jr Black.pdf?v=2", pass: "JrBlack26" }
             ],
             level3: [
                 { name: "Mini Red", coach: "Adam Kidd and Lindsey Propst", players: "13 Players", url: "Mini Red.pdf?v=2", pass: "MiniRed26" },
@@ -310,7 +335,6 @@
         }
     };
 
-    // Sport-Specific Coaching Resources Data
     const coachResources = {
         soccer: {
             title: "Youth Soccer Coaching Resources",
@@ -347,7 +371,7 @@
     function updateDrillSection(sport) {
         const titleElement = document.getElementById('drill-section-title');
         const listElement = document.getElementById('drill-list');
-
+        
         if (coachResources[sport]) {
             titleElement.innerText = coachResources[sport].title;
             listElement.innerHTML = coachResources[sport].links.map(link => `
@@ -366,9 +390,9 @@
         document.getElementById('btn-adult-sports').classList.toggle('active', category === 'adult-sports');
 
         const sportSelector = document.getElementById('sport-selector');
+        const youthSchedules = document.getElementById('youth-schedules');
         const jaymeInfo = document.getElementById('jayme-info');
         const adultInfo = document.getElementById('adult-info');
-        const scheduleBox = document.getElementById('schedule-box');
         const drillSection = document.getElementById('drill-section');
         const rosterHeader = document.getElementById('roster-header-text');
         const picBtn = document.getElementById('tab-picture-btn');
@@ -376,9 +400,9 @@
 
         if (category === 'in-town') {
             sportSelector.style.display = 'flex';
+            youthSchedules.style.display = 'block';
             jaymeInfo.style.display = 'none';
             adultInfo.style.display = 'none';
-            scheduleBox.style.display = 'block';
             drillSection.style.display = 'block';
             picBtn.style.display = 'inline-block';
             document.getElementById('tab-roster-text').innerText = "Coaches Corner / Rosters";
@@ -387,12 +411,11 @@
             showSport(currentSport);
         } else if (category === 'jayme') {
             sportSelector.style.display = 'none';
+            youthSchedules.style.display = 'none';
             jaymeInfo.style.display = 'block';
             adultInfo.style.display = 'none';
-            scheduleBox.style.display = 'none';
             drillSection.style.display = 'none';
             picBtn.style.display = 'none';
-            document.getElementById('sport-title').innerText = "Jayme's Classes";
             document.getElementById('tab-roster-text').innerText = "Class Rosters";
             rosterHeader.innerText = "Classes and Rosters";
             thRow.innerHTML = "<th>Class Name</th><th>Instructor</th><th>Location Detail</th>";
@@ -402,12 +425,11 @@
             showTab('schedule');
         } else if (category === 'adult-sports') {
             sportSelector.style.display = 'none';
+            youthSchedules.style.display = 'none';
             jaymeInfo.style.display = 'none';
             adultInfo.style.display = 'block';
-            scheduleBox.style.display = 'none';
             drillSection.style.display = 'none';
             picBtn.style.display = 'none';
-            document.getElementById('sport-title').innerText = "Adult Sports Leagues";
             document.getElementById('tab-roster-text').innerText = "League Rosters";
             rosterHeader.innerText = "Divisions & Captains";
             thRow.innerHTML = "<th>League/Roster</th><th>Management</th><th>Scale/Teams</th>";
@@ -424,26 +446,46 @@
         document.getElementById('btn-soccer').classList.toggle('active', sport === 'soccer');
         document.getElementById('btn-hoops').classList.toggle('active', sport === 'hoops');
 
-        const title = document.getElementById('sport-title');
-        const dlLink = document.getElementById('download-link');
+        const gameTitle = document.getElementById('game-schedule-title');
+        const gameDlLink = document.getElementById('game-download-link');
+        const practiceCard = document.getElementById('practice-card');
+        const practiceTitle = document.getElementById('practice-schedule-title');
+        const practiceDlLink = document.getElementById('practice-download-link');
+        const layoutCard = document.getElementById('layout-card');
+        const layoutTitle = document.getElementById('layout-schedule-title');
+        const layoutDlLink = document.getElementById('layout-download-link');
+        
         const btn1 = document.getElementById('btn-level-1');
         const btn2 = document.getElementById('btn-level-2');
         const btn3 = document.getElementById('btn-level-3');
+        
+        if (sport === 'soccer') {
+            gameTitle.innerText = "Soccer Game Schedule";
+            gameDlLink.setAttribute('href', 'Game%20Schedule%20-%20Fall%202026.pdf');
+            
+            practiceCard.style.display = "block";
+            practiceTitle.innerText = "Soccer Practice Schedule";
+            practiceDlLink.setAttribute('href', 'Practice%20Schedule%20-%20Fall%202026.pdf');
+            
+            layoutCard.style.display = "block";
+            layoutTitle.innerText = "Field Layout";
+            layoutDlLink.setAttribute('href', 'Field%20Layout%20-%20Fall%202026.pdf');
 
-        if(sport === 'soccer') {
-            title.innerText = "Soccer Game Schedule";
-            dlLink.setAttribute('href', 'Game%20Schedule%20-%20Fall%202026.pdf');
             btn1.innerText = "Senior Teams";
             btn2.innerText = "Junior Teams";
             btn3.innerText = "Mini Teams";
         } else {
-            title.innerText = "Basketball Game Schedule";
-            dlLink.setAttribute('href', 'Basketball-Schedule.pdf');
+            gameTitle.innerText = "Basketball Game Schedule";
+            gameDlLink.setAttribute('href', 'Basketball-Schedule.pdf');
+            
+            practiceCard.style.display = "none";
+            layoutCard.style.display = "none";
+
             btn1.innerText = "Intermediate";
             btn2.innerText = "Rookie";
             btn3.innerText = "Mini";
         }
-
+        
         showRoster('level1', btn1); 
         updateDrillSection(sport);
     }
