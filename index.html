@@ -18,7 +18,7 @@
         /* Centered Header Layout */
         header { 
             background-color: white; 
-            padding: 20px 40px;
+            padding: 20px 40px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -32,8 +32,8 @@
             width: auto; 
             position: absolute; 
             left: 40px; 
-            top: 50%;
-            transform: translateY(-50%);
+            top: 50%; 
+            transform: translateY(-50%); 
         }
 
         .portal-title { 
@@ -41,16 +41,16 @@
             font-size: 26px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            margin: 0;
-            letter-spacing: -0.5px;
-            text-align: center;
+            margin: 0; 
+            letter-spacing: -0.5px; 
+            text-align: center; 
         }
 
         /* Navigation Bars */
         .main-nav { 
             background: var(--y-black); 
             display: flex; 
-            justify-content: center;
+            justify-content: center; 
             border-bottom: 4px solid var(--y-yellow);
         }
         .main-nav button { 
@@ -71,7 +71,7 @@
         .sub-nav { background: var(--y-gray); display: flex; justify-content: center; border-bottom: 1px solid #ccc; }
         .sub-nav button { 
             background: none; border: none; padding: 14px 25px; cursor: pointer; 
-            font-weight: 600; color: #555; text-transform: uppercase; font-size: 12px;
+            font-weight: 600; color: #555; text-transform: uppercase; font-size: 12px; 
             letter-spacing: 0.5px;
         }
         .sub-nav button.active { color: var(--y-blue); border-bottom: 4px solid var(--y-blue); margin-bottom: -1px; }
@@ -125,7 +125,7 @@
             border-radius: 2px; 
             font-weight: bold; 
             text-transform: uppercase; 
-            font-size: 13px;
+            font-size: 13px; 
             white-space: nowrap; 
             cursor: pointer;
             border: none;
@@ -157,7 +157,7 @@
     <button onclick="showCategory('in-town')" id="btn-in-town" class="active">Youth Sports</button>
     <button onclick="showCategory('jayme')" id="btn-jayme">Jayme's Classes</button>
     <button onclick="showCategory('adult-sports')" id="btn-adult-sports">Adult Sports</button>
-    <button onclick="showCategory('gym-schedule')" id="btn-adult-sports">Gym Schedule</button>
+    <button onclick="showCategory('gym-schedule')" id="btn-gym-schedule">Gym Schedule</button>
 </div>
 
 <div id="sport-selector">
@@ -165,7 +165,7 @@
     <button onclick="showSport('hoops')" id="btn-hoops">Basketball</button>
 </div>
 
-<div class="sub-nav">
+<div class="sub-nav" id="sub-nav-bar">
     <button onclick="showTab('schedule')" class="sub-btn active">Information & Schedule</button>
     <button onclick="showTab('pictures')" id="tab-picture-btn" class="sub-btn">Picture Day</button>
     <button onclick="showTab('coaches')" id="tab-roster-text" class="sub-btn">Coaches Corner / Rosters</button>
@@ -236,6 +236,17 @@
                     <ul>
                         <li><strong>Adult Basketball League</strong></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gym Schedule Info Section -->
+        <div id="gym-schedule-info" style="display:none;">
+            <div class="schedule-card">
+                <h2>Open Gym & Facility Schedule</h2>
+                <div class="schedule-box">
+                    <p>Click the blue button below to visit our official website and view the most up-to-date gymnasium hours, open gym times, and facility schedules.</p>
+                    <a href="https://theydc.org" target="_blank" class="btn-link">View Gym Schedule on Website</a>
                 </div>
             </div>
         </div>
@@ -413,15 +424,22 @@
         document.getElementById('btn-in-town').classList.toggle('active', category === 'in-town');
         document.getElementById('btn-jayme').classList.toggle('active', category === 'jayme');
         document.getElementById('btn-adult-sports').classList.toggle('active', category === 'adult-sports');
+        document.getElementById('btn-gym-schedule').classList.toggle('active', category === 'gym-schedule');
 
         const sportSelector = document.getElementById('sport-selector');
+        const subNavBar = document.getElementById('sub-nav-bar');
         const youthSchedules = document.getElementById('youth-schedules');
         const jaymeInfo = document.getElementById('jayme-info');
         const adultInfo = document.getElementById('adult-info');
+        const gymScheduleInfo = document.getElementById('gym-schedule-info');
         const drillSection = document.getElementById('drill-section');
         const rosterHeader = document.getElementById('roster-header-text');
         const picBtn = document.getElementById('tab-picture-btn');
         const thRow = document.getElementById('roster-th-row');
+
+        // Reset visibility defaults
+        subNavBar.style.display = 'flex';
+        gymScheduleInfo.style.display = 'none';
 
         if (category === 'in-town') {
             sportSelector.style.display = 'flex';
@@ -461,6 +479,14 @@
             const html = rosterData.adultSports.leagues.map(item => generateTableRow(item)).join('');
             document.getElementById('roster-body').innerHTML = html;
             document.querySelector('.roster-tabs').style.display = 'none';
+            showTab('schedule');
+        } else if (category === 'gym-schedule') {
+            sportSelector.style.display = 'none';
+            subNavBar.style.display = 'none';
+            youthSchedules.style.display = 'none';
+            jaymeInfo.style.display = 'none';
+            adultInfo.style.display = 'none';
+            gymScheduleInfo.style.display = 'block';
             showTab('schedule');
         }
     }
